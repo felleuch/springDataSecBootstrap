@@ -13,6 +13,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -30,7 +32,7 @@ import java.util.Properties;
 @ComponentScan("com.faiez")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.faiez.repository")
-public class WebAppConfig {
+public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
@@ -98,6 +100,11 @@ public class WebAppConfig {
 		source.setBasename(env.getRequiredProperty("message.source.basename"));
 		source.setUseCodeAsDefaultMessage(true);
 		return source;
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 

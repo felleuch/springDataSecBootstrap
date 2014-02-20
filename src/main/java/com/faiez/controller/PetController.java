@@ -1,20 +1,20 @@
 package com.faiez.controller;
 
 import com.faiez.model.Pet;
+import com.faiez.response.PetDto;
+import com.faiez.response.PetLigne;
 import com.faiez.service.PetService;
 import com.faiez.validation.PetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,11 +62,32 @@ public class PetController {
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public ModelAndView shopListPage() {
+	public ModelAndView petListPage() {
 		ModelAndView mav = new ModelAndView("pets/pet-list");
-		List<Pet> petList = petService.findAll();
-		mav.addObject("petList", petList);
+		/*List<Pet> petList = petService.findAll();
+		mav.addObject("petList", petList);*/
 		return mav;
+	}
+
+
+
+
+
+	@RequestMapping(value="/allpets", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody	PetDto allPets() {
+		List<Pet> petList = petService.findAll();
+
+				List<PetLigne> lst = new ArrayList<PetLigne>();
+				for(Pet p:petList){
+					PetLigne pl = new PetLigne();
+					pl.setName(p.getName());
+					pl.setColor(p.getColor());
+					lst.add(pl);
+				}
+
+		PetDto petDtoObject = new PetDto();
+		petDtoObject.setAaData(lst);
+		return petDtoObject;
 	}
 
 

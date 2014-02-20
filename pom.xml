@@ -13,6 +13,10 @@
 
     <name>springDataSecBootstrap</name>
 
+    <properties>
+        <jackson.version>1.9.3</jackson.version>
+    </properties>
+
     <build>
         <finalName>springDataSecBootstrap</finalName>
         <plugins>
@@ -38,6 +42,25 @@
     </build>
 
     <dependencies>
+
+        <!-- Data Mapper package is a high-performance data binding package built
+               on Jackson JSON processor -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Jackson is a high-performance JSON processor (parser, generator) -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Sitemesh -->
         <dependency>

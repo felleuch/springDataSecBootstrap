@@ -43,7 +43,7 @@ public class PetType {
 	private String name;
 
 
-	@OneToMany(mappedBy="petType")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="petType")
 	private List<Pet> pets ;
 
 

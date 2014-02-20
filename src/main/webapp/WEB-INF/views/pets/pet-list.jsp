@@ -3,34 +3,32 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+
+
+
 <body>
 <h1>Pet List page</h1>
 
 
 
+<div class="table-container">
+    <table  cellpadding="0" cellspacing="0" border="0"  class="display jqueryDataTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
 
 
-<table class="table" >
-<thead>
-<tr>
-<th width="25px">Name</th><th width="150px">Color</th><th width="25px">Type</th><th width="50px">Type</th>
-</tr>
-</thead>
-<tbody>
-<c:forEach var="pet" items="${petList}">
-<tr>
-<td>${pet.name}</td>
-<td>${pet.color}</td>
-<td>${pet.petType.name}</td>
-<td>
-<a href="${pageContext.request.contextPath}/pets/edit/${pet.id}.html">Edit</a><br/>
-<a href="${pageContext.request.contextPath}/pets/delete/${pet.id}.html">Delete</a><br/>
-</td>
-</tr>
-</c:forEach>
-</tbody>
-</table>
+<script src="/resources/js/jquery.dataTables.min.js"></script>
+<script src="/resources/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="/resources/js/my-demo-table-script.js"></script>
 <a href="${pageContext.request.contextPath}/">Home page</a>
 </body>
 </html>
