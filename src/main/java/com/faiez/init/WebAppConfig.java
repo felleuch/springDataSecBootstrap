@@ -1,17 +1,15 @@
 package com.faiez.init;
 
 import org.hibernate.ejb.HibernatePersistence;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.context.support.ResourceBundleMessageSource;
+
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -32,6 +30,7 @@ import java.util.Properties;
 @ComponentScan("com.faiez")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.faiez.repository")
+@ImportResource("classpath:spring-security.xml")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 
