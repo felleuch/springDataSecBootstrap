@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="springDataSecBootstrap:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="springDataSecBootstrap.war">
-      <element id="artifact" artifact-name="springDataSecBootstrap:war exploded" />
-    </root>
-  </artifact>
-</component>
