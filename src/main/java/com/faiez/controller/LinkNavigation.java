@@ -13,10 +13,7 @@ public class LinkNavigation {
 		return new ModelAndView("home");
 	}
 	
-	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public ModelAndView indexPage() {
-		return new ModelAndView("home");
-	}
+
 	
 	@RequestMapping(value="/sec/moderation", method=RequestMethod.GET)
 	public ModelAndView moderatorPage() {

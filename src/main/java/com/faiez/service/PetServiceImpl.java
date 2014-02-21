@@ -1,8 +1,10 @@
 package com.faiez.service;
 
 import com.faiez.exception.BusinessException;
+import com.faiez.model.Owner;
 import com.faiez.model.Pet;
 import com.faiez.model.PetType;
+import com.faiez.repository.OwnersRepository;
 import com.faiez.repository.PetsRepository;
 import com.faiez.repository.PetsTypeRepository;
 import org.springframework.stereotype.Service;
@@ -23,13 +25,18 @@ public class PetServiceImpl implements PetService {
 	@Resource
 	private PetsTypeRepository petsTypeRepository;
 
+	@Resource
+	private OwnersRepository ownersRepository;
+
 	@Override
 	public Pet create(Pet pet) {
 		Pet createdPet = pet;
 
 		PetType pt = petsTypeRepository.findOne(5);
+		Owner owner = ownersRepository.findOne(1);
 
 		createdPet.setPetType(pt);
+		createdPet.setOwner(owner);
 		return petsRepository.save(createdPet);
 	}
 

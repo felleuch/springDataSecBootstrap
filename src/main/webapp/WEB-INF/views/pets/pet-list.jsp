@@ -26,9 +26,7 @@
 
 
 
-<script src="/resources/js/jquery.dataTables.min.js"></script>
-<script src="/resources/js/jquery-ui-1.10.3.custom.js"></script>
-<script src="/resources/js/my-demo-table-script.js"></script>
+
 <a href="${pageContext.request.contextPath}/">Home page</a>
 </body>
 </html>

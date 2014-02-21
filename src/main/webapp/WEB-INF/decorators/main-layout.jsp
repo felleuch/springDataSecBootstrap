@@ -10,8 +10,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"      rel="stylesheet"  type="text/css" />
+
     <script type="text/javascript" src="/resources/js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery-ui-1.10.3.custom.js"></script>
+
+    <script type="text/javascript" src="/resources/js/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.fileupload.js"></script>
+
+    <script src="/resources/js/jquery.dataTables.min.js"></script>
+    <script src="/resources/js/my-demo-table-script.js"></script>
+
     <style type="text/css" title="currentStyle">
         @import "/resources/css/demo_table_jui.css";
         @import "/resources/css/jquery-ui-1.10.3.custom.min.css";

@@ -27,10 +27,29 @@
         </div>
     </div>
 
+    <div class="form-group error">
+        <form:label class="col-lg-2 control-label" path="description">
+            Color <form:errors path="description" />
+        </form:label>
+        <div class="col-lg-6">
+            <form:textarea path="description" class="form-control" placeholder="description"/>
+        </div>
+    </div>
 
 
-    <p><button type="submit" class="btn btn-primary">Create</button></p>
-</form:form>
-<a href="${pageContext.request.contextPath}/">Home page</a>
+
+    <div class="form-group error">
+        <form:label class="col-lg-2 control-label" path="image">
+            Image <form:errors path="image" />
+        </form:label>
+        <div class="col-lg-6">
+            <form:input id="image" path="image" class="form-control" placeholder="image"  />
+            <input id="fileupload" type="file" name="files[]" data-url="/pets/upload" >
+            <img id="img2" src="#" width="100px"   height="100px"/>
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form:form>
 </body>
 </html>

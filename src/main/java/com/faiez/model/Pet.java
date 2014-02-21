@@ -8,6 +8,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="pets")
+
 public class Pet {
 
 
@@ -22,6 +23,22 @@ public class Pet {
 
 	@ManyToOne
 	private PetType petType;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@ManyToOne
+	private Owner owner;
+
+	private String image;
+
+	@Column(name="shortdesc")
+	private String description;
 
 
 	public Integer getId() {
@@ -54,5 +71,21 @@ public class Pet {
 
 	public void setPetType(PetType petType) {
 		this.petType = petType;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
