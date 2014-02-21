@@ -19,7 +19,7 @@
     <script type="text/javascript" src="/resources/js/jquery.fileupload.js"></script>
 
     <script src="/resources/js/jquery.dataTables.min.js"></script>
-    <script src="/resources/js/my-demo-table-script.js"></script>
+    <script src="/resources/js/my-script.js"></script>
 
     <style type="text/css" title="currentStyle">
         @import "/resources/css/demo_table_jui.css";

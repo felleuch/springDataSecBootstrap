@@ -5,6 +5,17 @@ package com.faiez.response;
  */
 public class PetLigne {
 
+	private boolean selected=false;
+
+	private Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	private String name;
 
@@ -25,5 +36,13 @@ public class PetLigne {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

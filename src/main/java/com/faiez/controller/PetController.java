@@ -1,5 +1,6 @@
 package com.faiez.controller;
 
+import com.faiez.exception.BusinessException;
 import com.faiez.model.FileMeta;
 import com.faiez.model.Pet;
 import com.faiez.response.PetDto;
@@ -7,6 +8,7 @@ import com.faiez.response.PetLigne;
 import com.faiez.service.PetService;
 import com.faiez.validation.PetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -31,6 +33,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/pets")
+@SessionAttributes("petObject")
 public class PetController {
 
 
@@ -89,6 +92,7 @@ public class PetController {
 				List<PetLigne> lst = new ArrayList<PetLigne>();
 				for(Pet p:petList){
 					PetLigne pl = new PetLigne();
+					pl.setId(p.getId());
 					pl.setName(p.getName());
 					pl.setColor(p.getColor());
 					lst.add(pl);
@@ -147,6 +151,51 @@ public class PetController {
 		return files;
 
 	}
+
+
+
+
+
+	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPetPage(@PathVariable Integer id) {
+		Pet pet = petService.findById(id);
+		ModelAndView mav = new ModelAndView("pets/pet-edit");
+		mav.addObject("petObject",pet);
+		return mav;
+	}
+
+	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView editPet(@ModelAttribute("petObject") @Valid Pet pet,
+								 BindingResult result,
+								 @PathVariable Integer id,
+								 final RedirectAttributes redirectAttributes) throws BusinessException {
+
+		if (result.hasErrors())
+			return new ModelAndView("pets/pet-edit");
+
+		ModelAndView mav = new ModelAndView("redirect:/pets/list.html");
+		String message = "Pet was successfully updated.";
+
+		petService.update(pet);
+
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+	public ModelAndView deletePet(@PathVariable Integer id,
+								   final RedirectAttributes redirectAttributes) throws BusinessException {
+
+		ModelAndView mav = new ModelAndView("redirect:/index.html");
+
+		Pet pet = petService.delete(id);
+		String message = "The shop "+pet.getName()+" was successfully deleted.";
+
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+
+
 
 
 }

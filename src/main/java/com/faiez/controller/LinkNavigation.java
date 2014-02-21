@@ -8,11 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LinkNavigation {
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public ModelAndView homePage() {
 		return new ModelAndView("home");
 	}
-	
 
 	
 	@RequestMapping(value="/sec/moderation", method=RequestMethod.GET)
