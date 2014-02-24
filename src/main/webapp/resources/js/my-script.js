@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $(".jqueryDataTable").dataTable( {
+    $(".petsDataTable").dataTable( {
         "bProcessing": false,
         "bFilter": false,
         "bServerSide": false,
@@ -50,6 +50,60 @@ $(document).ready(function() {
         ]
 
     } );
+
+
+    $(".ownersDataTable").dataTable( {
+        "bProcessing": false,
+        "bFilter": false,
+        "bServerSide": false,
+        "sAjaxSource": "/owners/allowners",
+        "bJQueryUI": true,
+        "aoColumnDefs": [
+
+            {
+                "aTargets": [ 1 ],
+                "mData": "firstName"
+            },
+            {
+                "aTargets": [ 2 ],
+                "mData": "lastName"
+            },
+
+            {
+                "aTargets": [ 3 ],
+                "mData": "id",
+                "mRender": function ( data, type, full ) {
+                    return '<a href="edit/'+data+'.html">Modify</a>';
+                }
+            },{
+                "aTargets": [ 4 ],
+                "mData": "id",
+                "mRender": function ( data, type, full ) {
+                    return '<a href="delete/'+data+'.html">Delete</a>';
+                }
+            },{
+                "aTargets": [ 5 ],
+                "mData": "id",
+                "mRender": function ( data, type, full ) {
+                    return '<button  id="dialog_link2" onclick="openMyDialog(\'detail/'+data+'.json\')"  >Detail</button>';
+                }
+            },{
+                "aTargets": [0],
+                "mData": "selected",
+                "mRender": function (data, type, full) {
+                    if (data == "1") {
+                        return '<input type=\"checkbox\" checked value="' + data + '">';
+                    } else {
+                        return '<input type=\"checkbox\" value="' + data + '">';
+                    }
+                }
+            }
+
+        ]
+
+    } );
+
+
 
     $("#fileupload").fileupload({
         dataType: "json",

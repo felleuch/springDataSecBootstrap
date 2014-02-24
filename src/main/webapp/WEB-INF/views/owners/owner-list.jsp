@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<h1>Pet List page</h1>
+<h1>Owner List page</h1>
 <div class="table-container">
-    <table  cellpadding="0" cellspacing="0" border="0"  class="display petsDataTable">
+    <table  cellpadding="0" cellspacing="0" border="0"  class="display ownersDataTable">
         <thead>
         <tr>
             <th>  <input id="allcheckbox" name="allcheckbox" type="checkbox" />  </th>
-            <th>Name</th>
-            <th>Color</th>
+            <th>Last Name</th>
+            <th>First Name</th>
             <th></th>
             <th></th>
             <th></th>
@@ -22,7 +22,7 @@
         </tbody>
     </table>
 </div>
-<div id="petdetail" title="Pet detail">
+<div id="ownerdetail" title="Owner detail">
 </div>
 <a href="${pageContext.request.contextPath}/">Home page</a>
 </body>
