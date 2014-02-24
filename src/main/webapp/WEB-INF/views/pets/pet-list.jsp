@@ -14,12 +14,15 @@
             <th>Color</th>
             <th></th>
             <th></th>
+            <th></th>
 
         </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
+</div>
+<div id="petdetail" title="Pet detail">
 </div>
 <a href="${pageContext.request.contextPath}/">Home page</a>
 </body>

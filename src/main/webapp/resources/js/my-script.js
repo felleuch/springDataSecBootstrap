@@ -30,6 +30,12 @@ $(document).ready(function() {
                     return '<a href="delete/'+data+'.html">Delete</a>';
                 }
             },{
+                "aTargets": [ 5 ],
+                "mData": "id",
+                "mRender": function ( data, type, full ) {
+                    return '<button  id="dialog_link2" onclick="openMyDialog(\'detail/'+data+'.json\')"  >Detail</button>';
+                }
+            },{
                 "aTargets": [0],
                 "mData": "selected",
                 "mRender": function (data, type, full) {
@@ -68,7 +74,53 @@ $(document).ready(function() {
         readURL(this);
     });
 
+    $("#petdetail").dialog({
+        position: "center",
+        autoOpen: false,
+        width: 400,
+        height:400,
+        buttons: {
+            "Cancel": function() {
+
+                $(this).dialog("close");
+            }
+        }
+    });
+
 } );
+
+function openMyDialog(  myurl){
+
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: myurl,
+        cache: false,
+        success: function(data){
+            $("#petdetail").html("<div></div>");
+            $.each( data, function( key, val ) {
+                $("#petdetail").append( "<div id ='detailPet' > ") ;
+
+                if( key  == "name" ){
+                    $("#petdetail").append("<p>Name : " + val + "</p> ") ;
+                }
+                if( key  == "color" ){
+                    $("#petdetail").append("<p>Color : " + val + "</p> ") ;
+                }
+                if( key  == "image" ){
+                    $("#petdetail").append("<p><img  width='200px' height='200px' src='/resources/images/" + val + "' /></p> ") ;
+                }
+
+
+                $("#petdetail").append("</div>" );
+            });
+
+
+        }
+    });
+    $("#petdetail").dialog("open");
+}
 
 
 
@@ -82,4 +134,6 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 

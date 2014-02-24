@@ -35,7 +35,7 @@
 
         <div class="form-group error">
             <form:label class="col-lg-2 control-label" path="description">
-                Color <form:errors path="description" />
+                Description <form:errors path="description" />
             </form:label>
             <div class="col-lg-6">
                 <form:textarea path="description" class="form-control" placeholder="description"/>

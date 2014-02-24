@@ -22,6 +22,15 @@ public class Pet {
 
 
 	@ManyToOne
+	private Owner owner;
+
+	private String image;
+
+	@Column(name="shortdesc")
+	private String description;
+
+
+	@ManyToOne
 	private PetType petType;
 
 	public String getDescription() {
@@ -32,13 +41,6 @@ public class Pet {
 		this.description = description;
 	}
 
-	@ManyToOne
-	private Owner owner;
-
-	private String image;
-
-	@Column(name="shortdesc")
-	private String description;
 
 
 	public Integer getId() {

@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -114,6 +116,11 @@ public class PetController {
 		Iterator<String> itr =  request.getFileNames();
 		MultipartFile mpf = null;
 
+		ServletContext servletContext =request.getServletContext();
+		String contextPath = servletContext.getRealPath(File.separator);
+
+		System.out.println("<br/>File system context path (in TestServlet): " + contextPath);
+
 		//2. get each file
 		while(itr.hasNext()){
 
@@ -135,7 +142,8 @@ public class PetController {
 				fileMeta.setBytes(mpf.getBytes());
 
 				// copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
-				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("D:/temp/" + mpf.getOriginalFilename()));
+
+				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(contextPath+"/resources/images/" + mpf.getOriginalFilename()));
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -195,7 +203,50 @@ public class PetController {
 		return mav;
 	}
 
+	@RequestMapping(value="/detail/{id}", method=RequestMethod.GET, produces="application/json")
+	public  @ResponseBody PetDetail detailPet(@PathVariable Integer id) {
+		Pet pet = petService.findById(id);
+		PetDetail petDetail = new PetDetail();
+		petDetail.setColor(pet.getColor());
+		petDetail.setName(pet.getName());
+		petDetail.setImage(pet.getImage());
+		return petDetail;
+	}
 
+}
+
+class PetDetail {
+	private String name;
+
+	private String color;
+
+	private String image;
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 
 }
