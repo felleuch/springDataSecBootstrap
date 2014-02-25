@@ -42,6 +42,18 @@
             </div>
         </div>
 
+        <div class="form-group error">
+            <form:label class="col-lg-2 control-label" path="ownerid">
+                Owner <form:errors path="ownerid" />
+            </form:label>
+            <div class="col-lg-6">
+                <form:select path="ownerid" id="ownerid" class="form-control" placeholder="Owner" >
+                    <form:option value="-1" label="--Please Select"/>
+                    <form:options items="${owners}" itemValue="id" itemLabel="firstname"/>
+                </form:select>
+            </div>
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="/pets/list" class="btn btn-success btn-large"><i class="icon-white "></i> Cancel</a>

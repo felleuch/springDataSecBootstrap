@@ -63,12 +63,17 @@ public class PetServiceImpl implements PetService {
 	public Pet update(Pet pet) throws BusinessException {
 		Pet petToupdate = petsRepository.findOne(pet.getId());
 
+
+
 		if (petToupdate == null)
 			throw new BusinessException();
 
+		Owner owner =ownersRepository.findOne(pet.getOwnerid());
+		petToupdate.setOwner(owner);
 		petToupdate.setName(pet.getName());
 		petToupdate.setColor(pet.getColor());
 		petToupdate.setPetType(pet.getPetType());
+
 
 		return petToupdate;
 	}

@@ -172,8 +172,13 @@ public class PetController {
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public ModelAndView editPetPage(@PathVariable Integer id) {
 		Pet pet = petService.findById(id);
+		pet.setOwnerid(pet.getOwner().getId());
 		ModelAndView mav = new ModelAndView("pets/pet-edit");
 		mav.addObject("petObject",pet);
+
+		List<Owner> owners = ownerService.findAll();
+		mav.addObject("owners",owners);
+
 		return mav;
 	}
 

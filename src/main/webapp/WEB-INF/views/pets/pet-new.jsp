@@ -42,7 +42,7 @@
         </form:label>
         <div class="col-lg-6">
             <form:select path="ownerid" id="ownerid" class="form-control" placeholder="Owner" >
-                <form:option value="-" label="--Please Select"/>
+                <form:option value="-1" label="--Please Select"/>
                 <form:options items="${owners}" itemValue="id" itemLabel="firstname"/>
             </form:select>
         </div>
