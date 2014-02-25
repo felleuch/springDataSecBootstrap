@@ -2,9 +2,11 @@ package com.faiez.controller;
 
 import com.faiez.exception.BusinessException;
 import com.faiez.model.FileMeta;
+import com.faiez.model.Owner;
 import com.faiez.model.Pet;
 import com.faiez.response.PetDto;
 import com.faiez.response.PetLigne;
+import com.faiez.service.OwnerService;
 import com.faiez.service.PetService;
 import com.faiez.validation.PetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +27,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by faiez.elleuch on 19/02/14.
@@ -43,16 +42,22 @@ public class PetController {
 	private PetService petService;
 
 	@Autowired
+	private OwnerService ownerService;
+
+	@Autowired
 	private PetValidator petValidator;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
+
 		binder.setValidator(petValidator);
 	}
 
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public ModelAndView newPetPage() {
 		ModelAndView mav = new ModelAndView("pets/pet-new", "pet", new Pet());
+		List<Owner> owners = ownerService.findAll();
+		mav.addObject("owners",owners);
 		return mav;
 	}
 
@@ -69,7 +74,7 @@ public class PetController {
 		String message = "New pet "+pet.getName()+" was successfully created.";
 
 		petService.create(pet);
-		mav.setViewName("redirect:/index.html");
+		mav.setViewName("redirect:/pets/list.html");
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
@@ -197,7 +202,7 @@ public class PetController {
 		ModelAndView mav = new ModelAndView("redirect:/index.html");
 
 		Pet pet = petService.delete(id);
-		String message = "The shop "+pet.getName()+" was successfully deleted.";
+		String message = "The pet "+pet.getName()+" was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;

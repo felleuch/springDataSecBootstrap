@@ -12,9 +12,22 @@ import javax.persistence.*;
 public class Pet {
 
 
+	public Integer getOwnerid() {
+		return ownerid;
+	}
+
+	public void setOwnerid(Integer ownerid) {
+		this.ownerid = ownerid;
+	}
+
 	@Id
 	@GeneratedValue
+
 	private Integer id;
+
+
+	@Transient
+	private Integer ownerid;
 
 	private String name;
 

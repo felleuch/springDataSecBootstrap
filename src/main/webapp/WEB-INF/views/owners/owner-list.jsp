@@ -6,6 +6,8 @@
 <body>
 <h1>Owner List page</h1>
 <div class="table-container">
+    <a href="/owners/create" class="btn btn-success btn-large"><i class="icon-white "></i> Add New</a>
+    <br><br>
     <table  cellpadding="0" cellspacing="0" border="0"  class="display ownersDataTable">
         <thead>
         <tr>

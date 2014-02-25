@@ -12,9 +12,9 @@ import java.util.List;
 public interface OwnerService {
 
 
-	public Pet create(Owner owner);
+	public Owner create(Owner owner);
 	public Owner delete(int id) throws BusinessException;
 	public List<Owner> findAll();
-	public Owner update(Owner pet) throws BusinessException;
+	public Owner update(Owner owner) throws BusinessException;
 	public Owner findById(int id);
 }

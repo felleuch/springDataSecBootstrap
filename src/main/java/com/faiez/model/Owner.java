@@ -63,7 +63,7 @@ public class Owner {
 
 	private int  tel;
 
-	@Column(name="desc")
+	@Column(name="shortdesc")
 	private String description;
 
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="owner")

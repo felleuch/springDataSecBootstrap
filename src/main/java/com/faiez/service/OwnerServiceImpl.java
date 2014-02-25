@@ -2,9 +2,11 @@ package com.faiez.service;
 
 import com.faiez.exception.BusinessException;
 import com.faiez.model.Owner;
+
 import com.faiez.model.Pet;
 import com.faiez.repository.OwnersRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,27 +21,51 @@ public class OwnerServiceImpl implements OwnerService{
 	private OwnersRepository ownersRepository;
 
 	@Override
-	public Pet create(Owner owner) {
-		return null;
+	public Owner create(Owner owner) {
+		Owner createdOwner = owner;
+		return ownersRepository.save(createdOwner);
 	}
 
 	@Override
+	@Transactional(rollbackFor = BusinessException.class)
 	public Owner delete(int id) throws BusinessException {
-		return null;
+
+		Owner ownerToDelete = ownersRepository.findOne(id);
+
+		if (ownerToDelete == null)
+			throw new BusinessException();
+
+		ownersRepository.delete(ownerToDelete);
+		return ownerToDelete;
 	}
 
 	@Override
+	@Transactional
 	public List<Owner> findAll() {
+
 		return ownersRepository.findAll();
 	}
 
 	@Override
-	public Owner update(Owner pet) throws BusinessException {
-		return null;
+	@Transactional(rollbackFor = BusinessException.class)
+	public Owner update(Owner owner) throws BusinessException {
+
+		Owner ownerToupdate = ownersRepository.findOne(owner.getId());
+
+		if (ownerToupdate == null)
+			throw new BusinessException();
+
+		ownerToupdate.setFirstname(owner.getFirstname());
+		ownerToupdate.setLastname(owner.getLastname());
+		ownerToupdate.setDescription(owner.getDescription());
+
+
+		return ownerToupdate;
 	}
 
 	@Override
 	public Owner findById(int id) {
-		return null;
+
+		return ownersRepository.findOne(id);
 	}
 }

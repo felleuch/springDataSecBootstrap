@@ -33,7 +33,7 @@ public class PetServiceImpl implements PetService {
 		Pet createdPet = pet;
 
 		PetType pt = petsTypeRepository.findOne(5);
-		Owner owner = ownersRepository.findOne(1);
+		Owner owner = ownersRepository.findOne(pet.getOwnerid());
 
 		createdPet.setPetType(pt);
 		createdPet.setOwner(owner);
